@@ -143,7 +143,7 @@ The project includes `compile_commands.json` for IDE support:
 - **CLion**: Import as CMake project
 - **Vim/Neovim**: Use with clangd or ccls
 
-### LSP Support (Language Server Protocol)
+### LSP Support
 For optimal IDE experience with language servers like **clangd**, you can regenerate the `compile_commands.json` file:
 
 ```bash
