@@ -1,6 +1,9 @@
 #pragma once
 
 #include "deck.hpp"
+#include <array>
+#include <stdexcept>
+#include <optional>
 
 
 class Player {
@@ -12,6 +15,16 @@ public:
       throw std::invalid_argument("Starting balance for a player must be positive.");
     } 
   }
+
+  void addCard(const Cards::Card &card);
+  [[nodiscard]] std::array<Cards::Card, 2> showHand() const;
+  void resetHand() noexcept;
+
+  void bet(int bet_amount);
+  void credit(int credit_amount) noexcept;
+  [[nodiscard]] int checkBalance() const noexcept;
+  [[nodiscard]] bool isBroke() const noexcept;
+
 private:
   int chips;
   HandType hand;
