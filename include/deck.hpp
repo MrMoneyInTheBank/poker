@@ -2,8 +2,8 @@
 
 #include <array>
 #include <stdexcept>
-namespace Cards {
 
+namespace Cards {
 enum class Suit: uint8_t {
   CLUB,
   DIAMOND,
@@ -31,13 +31,13 @@ struct Card {
   Suit suit;
   Rank rank;
 
-  Card() = default;
-  Card(Suit suit, Rank rank) : suit(suit), rank(rank) {}
+  Card() noexcept = default;
+  Card(Suit suit, Rank rank) noexcept : suit(suit), rank(rank) {}
 };
 
 class Deck {
 public:
-  Deck();
+  Deck() noexcept;
   void shuffle() noexcept;
   [[nodiscard]] Card draw() noexcept(false);
   void burn() noexcept(false);

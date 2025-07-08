@@ -6,7 +6,7 @@
 namespace {
 constexpr size_t SuitCount = 4;
 constexpr size_t RankCount = 13;
-[[maybe_unused]] constexpr size_t DeckSize = SuitCount * RankCount;
+constexpr size_t DeckSize = SuitCount * RankCount;
 
 constexpr std::array<Cards::Suit, SuitCount> Suits{
     Cards::Suit::CLUB, Cards::Suit::DIAMOND, Cards::Suit::HEART,
@@ -26,10 +26,10 @@ static std::seed_seq seed{
 };
 static std::mt19937 rng(seed);
 } // namespace
-//
+
 namespace Cards {
 
-Deck::Deck() {
+Deck::Deck() noexcept {
   size_t deck_position = 0;
   for (const Suit &suit : Suits) {
     for (const Rank &rank : Ranks) {
