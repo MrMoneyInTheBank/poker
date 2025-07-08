@@ -1,7 +1,14 @@
 #pragma once
 
 #include <array>
-#include <stdexcept>
+
+// Compile-time access control via constrained template forward declaration.
+// Full declaration in include/poker.hpp
+namespace Poker {
+template <std::size_t seats>
+  requires(seats >= 2 && seats < 10)
+class Table;
+}
 
 namespace Cards {
 enum class Suit : uint8_t { CLUB, DIAMOND, HEART, SPADE };
@@ -31,23 +38,23 @@ struct Card {
 };
 
 class Deck {
+  template <std::size_t seats>
+    requires(seats >= 2 && seats < 10)
+  friend class ::Poker::Table;
+
 public:
   Deck() noexcept;
   void shuffle() noexcept;
+
+private:
+  std::array<Card, 52> cards;
+  std::size_t top = 0;
+
   [[nodiscard]] Card draw() noexcept(false);
   void burn() noexcept(false);
   std::array<Card, 3> flop();
   Card turn();
   Card river();
-
-private:
-  std::array<Card, 52> cards;
-  std::size_t top = 0;
-};
-
-class EmptyDeckError : public std::out_of_range {
-public:
-  explicit EmptyDeckError(const char *msg) : std::out_of_range(msg) {}
 };
 
 } // namespace Cards
