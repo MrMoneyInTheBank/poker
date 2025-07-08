@@ -6,7 +6,6 @@
 namespace {
 constexpr std::size_t SuitCount = 4;
 constexpr std::size_t RankCount = 13;
-constexpr std::size_t DeckSize = SuitCount * RankCount;
 
 constexpr std::array<Cards::Suit, SuitCount> Suits{
     Cards::Suit::CLUB, Cards::Suit::DIAMOND, Cards::Suit::HEART,
@@ -43,19 +42,9 @@ void Deck::shuffle() noexcept {
   std::shuffle(this->cards.begin(), this->cards.end(), rng);
 }
 
-Cards::Card Deck::draw() {
-  if (this->top == DeckSize) {
-    throw EmptyDeckError("No more cards to draw.");
-  }
-  return this->cards[this->top++];
-}
+Cards::Card Deck::draw() { return this->cards[this->top++]; }
 
-void Deck::burn() {
-  if (this->top == DeckSize) {
-    throw EmptyDeckError("No more cards to burn.");
-  }
-  this->top++;
-}
+void Deck::burn() { this->top++; }
 
 std::array<Cards::Card, 3> Deck::flop() {
   return {this->draw(), this->draw(), this->draw()};
