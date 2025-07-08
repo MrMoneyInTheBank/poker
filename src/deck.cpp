@@ -4,9 +4,9 @@
 #include <random>
 
 namespace {
-constexpr size_t SuitCount = 4;
-constexpr size_t RankCount = 13;
-constexpr size_t DeckSize = SuitCount * RankCount;
+constexpr std::size_t SuitCount = 4;
+constexpr std::size_t RankCount = 13;
+constexpr std::size_t DeckSize = SuitCount * RankCount;
 
 constexpr std::array<Cards::Suit, SuitCount> Suits{
     Cards::Suit::CLUB, Cards::Suit::DIAMOND, Cards::Suit::HEART,
@@ -30,7 +30,7 @@ static std::mt19937 rng(seed);
 namespace Cards {
 
 Deck::Deck() noexcept {
-  size_t deck_position = 0;
+  std::size_t deck_position = 0;
   for (const Suit &suit : Suits) {
     for (const Rank &rank : Ranks) {
       this->cards[deck_position++] = Card(suit, rank);
@@ -56,4 +56,12 @@ void Deck::burn() {
   }
   this->top++;
 }
+
+std::array<Cards::Card, 3> Deck::flop() {
+  return {this->draw(), this->draw(), this->draw()};
+}
+
+Cards::Card Deck::turn() { return this->draw(); }
+
+Cards::Card Deck::river() { return this->draw(); }
 } // namespace Cards
