@@ -1,8 +1,8 @@
 #include "player.hpp"
 
-
 void Player::addCard(const Cards::Card &card) {
-  HandType::iterator slot = std::find(this->hand.begin(), this->hand.end(), std::nullopt);
+  HandType::iterator slot =
+      std::find(this->hand.begin(), this->hand.end(), std::nullopt);
   if (slot == this->hand.end()) {
     throw std::length_error("Player hand is already full");
   }
@@ -14,7 +14,7 @@ void Player::addCard(const Cards::Card &card) {
   if (this->hand[0] == std::nullopt || this->hand[1] == std::nullopt) {
     throw std::logic_error("Can't show empty/partial hand");
   }
-  return { *this->hand[0], *this->hand[1]};
+  return {*this->hand[0], *this->hand[1]};
 }
 
 void Player::bet(int bet_amount) {
@@ -28,14 +28,8 @@ void Player::credit(int credit_amount) noexcept {
   this->chips += credit_amount;
 }
 
-void Player::resetHand() noexcept {
-  this->hand.fill(std::nullopt);
-}
+void Player::resetHand() noexcept { this->hand.fill(std::nullopt); }
 
-[[nodiscard]] int Player::checkBalance() const noexcept {
-  return this->chips;
-}
+[[nodiscard]] int Player::checkBalance() const noexcept { return this->chips; }
 
-[[nodiscard]] bool Player::isBroke() const noexcept {
-  return this->chips == 0;
-}
+[[nodiscard]] bool Player::isBroke() const noexcept { return this->chips == 0; }

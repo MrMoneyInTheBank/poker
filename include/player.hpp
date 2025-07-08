@@ -2,18 +2,19 @@
 
 #include "deck.hpp"
 #include <array>
-#include <stdexcept>
 #include <optional>
-
+#include <stdexcept>
 
 class Player {
 public:
   using HandType = std::array<std::optional<Cards::Card>, 2>;
 
+  Player() noexcept = default;
   explicit Player(int starting_balance) : chips(starting_balance) {
     if (starting_balance < 0) {
-      throw std::invalid_argument("Starting balance for a player must be positive.");
-    } 
+      throw std::invalid_argument(
+          "Starting balance for a player must be positive.");
+    }
   }
 
   void addCard(const Cards::Card &card);

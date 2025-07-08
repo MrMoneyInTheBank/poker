@@ -4,14 +4,9 @@
 #include <stdexcept>
 
 namespace Cards {
-enum class Suit: uint8_t {
-  CLUB,
-  DIAMOND,
-  HEART,
-  SPADE
-};
+enum class Suit : uint8_t { CLUB, DIAMOND, HEART, SPADE };
 
-enum class Rank: uint8_t {
+enum class Rank : uint8_t {
   TWO = 2,
   THREE,
   FOUR,
@@ -49,7 +44,7 @@ private:
 
 class EmptyDeckError : public std::out_of_range {
 public:
-  explicit EmptyDeckError(const char* msg) : std::out_of_range(msg) {}
+  explicit EmptyDeckError(const char *msg) : std::out_of_range(msg) {}
 };
 
-}
+} // namespace Cards
