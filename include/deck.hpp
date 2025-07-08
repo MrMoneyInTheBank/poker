@@ -36,6 +36,9 @@ public:
   void shuffle() noexcept;
   [[nodiscard]] Card draw() noexcept(false);
   void burn() noexcept(false);
+  std::array<Card, 3> flop();
+  Card turn();
+  Card river();
 
 private:
   std::array<Card, 52> cards;
