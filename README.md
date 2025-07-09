@@ -1,6 +1,6 @@
 # Poker Game
 
-A C++ implementation of a poker deck management system with card drawing, shuffling, and deck manipulation capabilities.
+A C++ implementation of a poker game system with robust deck, player, and table management capabilities.
 
 ## Overview
 
@@ -8,7 +8,8 @@ This project provides a robust foundation for poker game development with a well
 
 - **Card representation** with suits and ranks
 - **Deck management** with shuffling and drawing capabilities
-- **Error handling** for edge cases like empty decks
+- **Compile-time safety** for deck exhaustion (no runtime empty deck errors)
+- **Player and table abstractions** for extensible game logic
 - **Modern C++ features** including strong typing and exception safety
 
 ## System Prerequisites
@@ -106,15 +107,23 @@ poker/
   - `Cards::Suit` enum: CLUB, DIAMOND, HEART, SPADE
   - `Cards::Rank` enum: TWO through ACE
   - `Cards::Card` struct: Represents a single playing card
-  - `Cards::Deck` class: Manages a 52-card deck
-  - `Cards::EmptyDeckError` exception: Handles deck exhaustion
+  - `Cards::Deck` class: Manages a 52-card deck. Deck operations (draw, burn, flop, turn, river) are only accessible to the `Poker::Table` class via friendship, ensuring compile-time safety against running out of cards.
+- **`player.hpp`**: Defines the `Player` class
+  - Represents a poker player with a chip balance and a two-card hand
+  - Provides methods for betting, crediting, hand management, and balance checks
+  - Enforces non-negative starting balances at construction
+- **`poker.hpp`**: Declares the `Poker::Table` class template
+  - Manages a table of 2-9 players and a deck
+  - Ensures at compile time that the deck cannot be overdrawn during play
+  - Acts as the only class with privileged access to deck operations
 
 #### Source Files (`src/`)
 - **`deck.cpp`**: Implements deck functionality
   - Deck initialization with all 52 cards
   - Fisher-Yates shuffle algorithm using Mersenne Twister
-  - Card drawing with bounds checking
-  - Card burning (discarding without drawing)
+  - Card drawing, burning, and dealing (flop, turn, river) with access restricted to `Poker::Table`
+- **`player.cpp`**: Implements player logic
+  - Hand management, betting, and balance operations
 - **`main.cpp`**: Application entry point
 
 ### Design Patterns
@@ -128,6 +137,8 @@ poker/
 - **Exception-safe operations** with proper error propagation
 - **Memory-efficient** using stack-allocated arrays
 - **Modern C++ idioms** including `noexcept` specifications and attributes
+- **Compile-time deck safety**: The `Poker::Table` class template ensures at compile time that the deck cannot be overdrawn, eliminating runtime empty deck errors.
+- **Player abstraction**: The `Player` class models chip management, hand state, and betting logic.
 
 ## Development
 
@@ -177,7 +188,7 @@ This ensures your LSP has the most up-to-date compilation database for features 
 - GUI interface
 
 ## License
-[Add your license information here]
 
-## Contributing
-[Add contribution guidelines here] 
+This project is licensed under the MIT License. You are free to use, modify, and distribute this code for any purpose.
+
+See the [LICENSE](LICENSE) file for details.
