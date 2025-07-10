@@ -1,14 +1,16 @@
 #include "player.hpp"
 
-void Player::addCard(const Cards::Card &card) {
-  HandType::iterator slot =
+template <typename T>
+  requires std::same_as<std::remove_cvref_t<T>, Cards::Card>
+void Player::addCard(T &&card) noexcept(false) {
+  PartialPocket::iterator slot =
       std::find(this->hand.begin(), this->hand.end(), std::nullopt);
   if (slot == this->hand.end()) {
     throw std::length_error("Player hand is already full");
   }
 
-  *slot = card;
-}
+  *slot = std::forward<T>(card);
+};
 
 [[nodiscard]] Player::PocketCards Player::showHand() const noexcept(false) {
   if (not this->hand[0].has_value() || not this->hand[1].has_value()) {

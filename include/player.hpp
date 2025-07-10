@@ -2,6 +2,7 @@
 
 #include "deck.hpp"
 #include <array>
+#include <concepts>
 #include <optional>
 #include <stdexcept>
 
@@ -19,7 +20,10 @@ public:
     }
   }
 
-  void addCard(const Cards::Card &card);
+  template <typename T>
+    requires std::same_as<std::remove_cvref_t<T>, Cards::Card>
+  void addCard(T &&card) noexcept(false);
+
   [[nodiscard]] PocketCards showHand() const noexcept(false);
   void resetHand() noexcept;
 
