@@ -10,8 +10,8 @@ void Player::addCard(const Cards::Card &card) {
   *slot = card;
 }
 
-[[nodiscard]] std::array<Cards::Card, 2> Player::showHand() const {
-  if (this->hand[0] == std::nullopt || this->hand[1] == std::nullopt) {
+[[nodiscard]] Player::PocketCards Player::showHand() const noexcept(false) {
+  if (not this->hand[0].has_value() || not this->hand[1].has_value()) {
     throw std::logic_error("Can't show empty/partial hand");
   }
   return {*this->hand[0], *this->hand[1]};
@@ -34,8 +34,6 @@ void Player::credit(int credit_amount) noexcept(false) {
   }
   this->chips += credit_amount;
 }
-
-void Player::resetHand() noexcept { this->hand.fill(std::nullopt); }
 
 [[nodiscard]] int Player::checkBalance() const noexcept { return this->chips; }
 
