@@ -22,7 +22,14 @@ public:
 
   template <typename T>
     requires std::same_as<std::remove_cvref_t<T>, Cards::Card>
-  void addCard(T &&card) noexcept(false);
+  void addCard(T &&card) noexcept(false) {
+    PartialPocket::iterator slot =
+        std::find(this->hand.begin(), this->hand.end(), std::nullopt);
+    if (slot == this->hand.end()) {
+      throw std::length_error("Player hand is already full");
+    }
+    *slot = std::forward<T>(card);
+  };
 
   [[nodiscard]] PocketCards showHand() const noexcept(false);
   void resetHand() noexcept;

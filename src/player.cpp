@@ -1,22 +1,10 @@
 #include "player.hpp"
 
-template <typename T>
-  requires std::same_as<std::remove_cvref_t<T>, Cards::Card>
-void Player::addCard(T &&card) noexcept(false) {
-  PartialPocket::iterator slot =
-      std::find(this->hand.begin(), this->hand.end(), std::nullopt);
-  if (slot == this->hand.end()) {
-    throw std::length_error("Player hand is already full");
-  }
-
-  *slot = std::forward<T>(card);
-};
-
 [[nodiscard]] Player::PocketCards Player::showHand() const noexcept(false) {
   if (not this->hand[0].has_value() || not this->hand[1].has_value()) {
     throw std::logic_error("Can't show empty/partial hand");
   }
-  return {*this->hand[0], *this->hand[1]};
+  return {this->hand[0].value(), this->hand[1].value()};
 }
 
 void Player::resetHand() noexcept { this->hand.fill(std::nullopt); }
