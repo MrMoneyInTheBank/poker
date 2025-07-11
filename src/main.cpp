@@ -12,3 +12,7 @@ constexpr std::string_view to_string(Cards::Rank r) {
   return RankNames[static_cast<std::size_t>(r) - 2];
 }
 
+std::ostream &operator<<(std::ostream &os, const Cards::Card &c) {
+  return os << to_string(c.rank) << to_string(c.suit);
+}
+
