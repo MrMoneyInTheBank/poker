@@ -7,6 +7,8 @@ namespace Poker {
 template <std::size_t seats>
   requires(seats >= 2 && seats < 10)
 class Table {
+  using Players = std::array<std::optional<Player>, seats>;
+
 public:
   Table() = default;
   Table(const Cards::Deck &deck) : deck(deck){};
