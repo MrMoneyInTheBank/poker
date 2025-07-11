@@ -32,8 +32,8 @@ int main() {
 
   poker_table.deal_cards();
 
-  std::array<Cards::Card, 2> ansh = poker_table.players[0]->showHand();
-  std::array<Cards::Card, 2> comp = poker_table.players[1]->showHand();
+  std::array<Cards::Card, 2> ansh = poker_table.players[0]->show_hand();
+  std::array<Cards::Card, 2> comp = poker_table.players[1]->show_hand();
   std::cout << "Ansh hand\n";
   std::cout << ansh[0] << ", " << ansh[1];
   std::cout << "\nComp hand\n";
