@@ -10,6 +10,17 @@ class Table {
 public:
   Table() = default;
   Table(const Cards::Deck &deck) : deck(deck){};
+
+  void add_player(const Player &player) noexcept(false) {
+    typename Players::iterator slot =
+        std::find(this->players.begin(), this->players.end(), std::nullopt);
+
+    if (slot == this->players.end()) {
+      throw std::runtime_error("Cannot add player to full table.");
+    }
+
+    *slot = player;
+  }
   Players players;
 
 private:
