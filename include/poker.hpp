@@ -14,15 +14,16 @@ public:
   Table() = default;
   Table(const Cards::Deck &deck) : deck(deck){};
 
-  void add_player(const Player &player) noexcept(false) {
+  template <typename P>
+    requires std::same_as<std::remove_cvref_t<P>, Player>
+  void add_player(P &&player) noexcept(false) {
     typename Players::iterator slot =
         std::find(this->players.begin(), this->players.end(), std::nullopt);
-
     if (slot == this->players.end()) {
       throw std::runtime_error("Cannot add player to full table.");
     }
 
-    *slot = player;
+    *slot = std::forward<P>(player);
   }
 
   bool table_full() const noexcept {
