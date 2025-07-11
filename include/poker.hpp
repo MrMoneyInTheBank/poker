@@ -1,3 +1,5 @@
+#pragma once
+
 #include "deck.hpp"
 #include "player.hpp"
 #include <array>
