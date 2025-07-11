@@ -21,6 +21,14 @@ public:
 
     *slot = player;
   }
+
+  bool table_full() const noexcept {
+    typename Players::const_iterator slot =
+        std::find(this->players.begin(), this->players.end(), std::nullopt);
+
+    return slot == this->players.end();
+  }
+
   Players players;
 
 private:
