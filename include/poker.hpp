@@ -9,9 +9,9 @@ template <std::size_t seats>
 class Table {
 public:
   Table() = default;
+  Players players;
 
 private:
-  std::array<Player, seats> players;
   Cards::Deck deck;
 };
 
