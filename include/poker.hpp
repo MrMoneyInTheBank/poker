@@ -9,6 +9,7 @@ template <std::size_t seats>
 class Table {
 public:
   Table() = default;
+  Table(const Cards::Deck &deck) : deck(deck){};
   Players players;
 
 private:
