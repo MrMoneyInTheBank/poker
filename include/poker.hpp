@@ -29,6 +29,17 @@ public:
     return slot == this->players.end();
   }
 
+  // TODO
+  // probably best to make this a private method
+  // later and invoke it via a main game loop
+  void deal_cards() noexcept(false) {
+    for (std::size_t i = 0; i < 2 * this->players.size(); i++) {
+      if (this->players[i % seats].has_value()) {
+        this->players[i % seats].value().addCard(this->deck.draw());
+      }
+    }
+  }
+
   Players players;
 
 private:
