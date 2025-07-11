@@ -1,6 +1,7 @@
 #include "deck.hpp"
 #include "player.hpp"
 #include <array>
+#include <stdexcept>
 
 namespace Poker {
 
