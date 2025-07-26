@@ -4,19 +4,6 @@
 #include <random>
 
 namespace {
-constexpr std::size_t SuitCount = 4;
-constexpr std::size_t RankCount = 13;
-
-constexpr std::array<Cards::Suit, SuitCount> Suits{
-    Cards::Suit::CLUB, Cards::Suit::DIAMOND, Cards::Suit::HEART,
-    Cards::Suit::SPADE};
-
-constexpr std::array<Cards::Rank, RankCount> Ranks{
-    Cards::Rank::TWO, Cards::Rank::THREE, Cards::Rank::FOUR,  Cards::Rank::FIVE,
-    Cards::Rank::SIX, Cards::Rank::SEVEN, Cards::Rank::EIGHT, Cards::Rank::NINE,
-    Cards::Rank::TEN, Cards::Rank::JACK,  Cards::Rank::QUEEN, Cards::Rank::KING,
-    Cards::Rank::ACE};
-
 static std::random_device entropy_seed;
 static std::seed_seq seed{
     entropy_seed(), entropy_seed(), entropy_seed(),
