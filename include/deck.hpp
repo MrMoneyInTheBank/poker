@@ -62,6 +62,7 @@ public:
 
 private:
   std::array<Card, 52> cards;
+  std::array<Card, SuitCount * RankCount> cards;
   std::size_t top = 0;
 
   [[nodiscard]] Card draw() noexcept(false);
