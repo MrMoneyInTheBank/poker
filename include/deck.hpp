@@ -47,8 +47,8 @@ struct Card {
   Suit suit;
   Rank rank;
 
-  Card() noexcept = default;
-  Card(Suit suit, Rank rank) noexcept : suit(suit), rank(rank) {}
+  Card() = default;
+  Card(Suit suit, Rank rank) : suit(suit), rank(rank) {}
 };
 
 class Deck {
@@ -57,11 +57,10 @@ class Deck {
   friend class ::Poker::Table;
 
 public:
-  Deck() noexcept;
-  void shuffle() noexcept;
+  Deck();
+  void shuffle();
 
 private:
-  std::array<Card, 52> cards;
   std::array<Card, SuitCount * RankCount> cards;
   std::size_t top = 0;
 
