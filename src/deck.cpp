@@ -33,8 +33,20 @@ Card Deck::draw() { return this->cards[this->top++]; }
 void Deck::burn() { this->top++; }
 
 std::array<Card, 3> Deck::flop() {
-  return {this->draw(), this->draw(), this->draw()};
+  this->burn();
+  return {
+    this->draw(), 
+    this->draw(), 
+    this->draw()
+  };
 }
-Card Deck::turn() { return this->draw(); }
-Card Deck::river() { return this->draw(); }
+Card Deck::turn() {
+  this->burn();
+  return this->draw();
+}
+
+Card Deck::river() {
+  this->burn();
+  return this->draw();
+}
 } // namespace Cards
