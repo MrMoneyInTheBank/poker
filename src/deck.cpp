@@ -34,11 +34,7 @@ void Deck::burn() { this->top++; }
 
 std::array<Card, 3> Deck::flop() {
   this->burn();
-  return {
-    this->draw(), 
-    this->draw(), 
-    this->draw()
-  };
+  return {this->draw(), this->draw(), this->draw()};
 }
 Card Deck::turn() {
   this->burn();
