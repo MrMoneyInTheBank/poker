@@ -10,9 +10,9 @@
 void Player::reset_hand() noexcept { this->hand.fill(std::nullopt); }
 
 void Player::bet(int bet_amount) noexcept(false) {
-  if (bet_amount > chips) {
+  if (bet_amount > this->chips) {
     throw std::invalid_argument("Bet amount cannot be greater than balance.");
-  } else if (bet_amount <= 0) {
+  } else if (bet_amount < 0) {
     throw std::invalid_argument("Bet amount must be positive.");
   }
   this->chips -= bet_amount;
@@ -27,4 +27,6 @@ void Player::credit(int credit_amount) noexcept(false) {
 
 [[nodiscard]] int Player::check_balance() const noexcept { return this->chips; }
 
-[[nodiscard]] bool Player::is_broke() const noexcept { return this->chips == 0; }
+[[nodiscard]] bool Player::is_broke() const noexcept {
+  return this->chips == 0;
+}
