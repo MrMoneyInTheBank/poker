@@ -11,6 +11,10 @@ class Table;
 }
 
 namespace Cards {
+
+constexpr std::size_t SuitCount = 4;
+constexpr std::size_t RankCount = 13;
+
 enum class Suit : uint8_t { CLUB, DIAMOND, HEART, SPADE };
 
 enum class Rank : uint8_t {
@@ -28,6 +32,16 @@ enum class Rank : uint8_t {
   KING,
   ACE,
 };
+
+constexpr std::array<Suit, SuitCount> Suits{
+    Suit::CLUB, Suit::DIAMOND, Suit::HEART,
+    Suit::SPADE};
+
+constexpr std::array<Cards::Rank, RankCount> Ranks{
+    Rank::TWO, Rank::THREE, Rank::FOUR,  Rank::FIVE,
+    Rank::SIX, Rank::SEVEN, Rank::EIGHT, Rank::NINE,
+    Rank::TEN, Rank::JACK,  Rank::QUEEN, Rank::KING,
+    Rank::ACE};
 
 struct Card {
   Suit suit;
