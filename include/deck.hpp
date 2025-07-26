@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <string_view>
 
 // Compile-time access control via constrained template forward declaration.
 // Full declaration in include/poker.hpp
@@ -33,16 +34,15 @@ enum class Rank : uint8_t {
   ACE,
 };
 
-constexpr std::array<Suit, SuitCount> Suits{
-    Suit::CLUB, Suit::DIAMOND, Suit::HEART,
-    Suit::SPADE};
+constexpr std::array<Suit, SuitCount> Suits{Suit::CLUB, Suit::DIAMOND,
+                                            Suit::HEART, Suit::SPADE};
 
 constexpr std::array<Cards::Rank, RankCount> Ranks{
-    Rank::TWO, Rank::THREE, Rank::FOUR,  Rank::FIVE,
-    Rank::SIX, Rank::SEVEN, Rank::EIGHT, Rank::NINE,
-    Rank::TEN, Rank::JACK,  Rank::QUEEN, Rank::KING,
-    Rank::ACE};
+    Rank::TWO,   Rank::THREE, Rank::FOUR, Rank::FIVE, Rank::SIX,
+    Rank::SEVEN, Rank::EIGHT, Rank::NINE, Rank::TEN,  Rank::JACK,
+    Rank::QUEEN, Rank::KING,  Rank::ACE};
 
+constexpr std::array<std::string_view, 4> SuitNames{
 struct Card {
   Suit suit;
   Rank rank;
