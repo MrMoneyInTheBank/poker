@@ -43,6 +43,12 @@ constexpr std::array<Cards::Rank, RankCount> Ranks{
     Rank::QUEEN, Rank::KING,  Rank::ACE};
 
 constexpr std::array<std::string_view, 4> SuitNames{
+    "\u2663", // club
+    "\u2666", // diamond
+    "\u2665", // heart
+    "\u2660"  // spade
+};
+
 struct Card {
   Suit suit;
   Rank rank;
