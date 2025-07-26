@@ -41,7 +41,7 @@ public:
   void deal_cards() noexcept(false) {
     for (std::size_t i = 0; i < 2 * this->players.size(); i++) {
       if (this->players[i % seats].has_value()) {
-        this->players[i % seats].value().addCard(this->deck.draw());
+        this->players[i % seats].value().add_card(this->deck.draw());
       }
     }
   }
