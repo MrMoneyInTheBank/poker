@@ -11,7 +11,7 @@ public:
   using PartialPocket = std::array<std::optional<Cards::Card>, 2>;
   using PocketCards = std::array<Cards::Card, 2>;
 
-  Player() noexcept = default;
+  Player() = default;
   explicit Player(int starting_balance) noexcept(false)
       : chips(starting_balance) {
     if (starting_balance < 0) {
