@@ -15,7 +15,7 @@ static std::mt19937 rng(seed);
 
 namespace Cards {
 
-Deck::Deck() noexcept {
+Deck::Deck() {
   std::size_t deck_position = 0;
   for (const Suit &suit : Suits) {
     for (const Rank &rank : Ranks) {
@@ -25,19 +25,16 @@ Deck::Deck() noexcept {
   this->shuffle();
 }
 
-void Deck::shuffle() noexcept {
+void Deck::shuffle() {
   std::shuffle(this->cards.begin(), this->cards.end(), rng);
 }
 
-Cards::Card Deck::draw() { return this->cards[this->top++]; }
-
+Card Deck::draw() { return this->cards[this->top++]; }
 void Deck::burn() { this->top++; }
 
-std::array<Cards::Card, 3> Deck::flop() {
+std::array<Card, 3> Deck::flop() {
   return {this->draw(), this->draw(), this->draw()};
 }
-
-Cards::Card Deck::turn() { return this->draw(); }
-
-Cards::Card Deck::river() { return this->draw(); }
+Card Deck::turn() { return this->draw(); }
+Card Deck::river() { return this->draw(); }
 } // namespace Cards
