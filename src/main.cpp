@@ -10,9 +10,7 @@ int main() {
   Player human(50);
   Player computer(50);
 
-  Poker::Table<2> poker_table(deck);
-  poker_table.add_player(human);
-  poker_table.add_player(computer);
+  Poker::Table<2> poker_table(deck, {human, computer});
 
   poker_table.deal_cards();
 
@@ -22,4 +20,5 @@ int main() {
   std::cout << ansh[0] << ", " << ansh[1];
   std::cout << "\nComp hand\n";
   std::cout << comp[0] << ", " << comp[1] << "\n";
+
 }
