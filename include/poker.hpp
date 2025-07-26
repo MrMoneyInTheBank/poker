@@ -19,7 +19,7 @@ public:
   // TODO
   // probably best to make this a private method
   // later and invoke it via a main game loop
-  void deal_cards() noexcept(false) {
+  void deal_pocket_cards() noexcept(false) {
     for (std::size_t i = 0; i < 2 * seats; i++) {
       this->players[i % seats].add_card(this->deck.draw());
     }
@@ -40,7 +40,7 @@ public:
 
   void river() {
     Cards::Card river_card = this->deck.river();
-    community_cards[3] = river_card;
+    community_cards[4] = river_card;
   }
 
   Players players;
