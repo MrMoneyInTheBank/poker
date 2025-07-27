@@ -2,6 +2,7 @@
 
 #include <array>
 #include <string_view>
+#include <ostream>
 
 // Compile-time access control via constrained template forward declaration.
 // Full declaration in include/poker.hpp
@@ -70,6 +71,10 @@ struct Card {
 inline std::ostream &operator<<(std::ostream &out_stream, const Card &card) {
   return out_stream << to_string(card.rank) << to_string(card.suit);
 };
+
+inline std::ostream &operator<<(std::ostream &out_stream, const std::array<Card, 2>& cards) {
+  return out_stream << cards[0] << " " << cards[1];
+}
 
 class Deck {
   template <std::size_t seats>
