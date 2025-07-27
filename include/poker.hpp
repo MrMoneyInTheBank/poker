@@ -16,9 +16,7 @@ public:
   Table() = default;
   Table(const Cards::Deck &deck, const std::array<Player, seats> &players)
       : players(players), deck(deck){};
-  // TODO
-  // probably best to make this a private method
-  // later and invoke it via a main game loop
+
   void deal_pocket_cards() noexcept(false) {
     for (std::size_t i = 0; i < 2 * seats; i++) {
       this->players[i % seats].add_card(this->deck.draw());
